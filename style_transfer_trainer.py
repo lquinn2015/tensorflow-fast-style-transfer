@@ -237,8 +237,8 @@ class StyleTransferTrainer:
                 _, summary, L_total, L_content, L_style, L_tv, step = self.sess.run(
                     [train_op, merged_summary_op, self.L_total, self.L_content, self.L_style, self.L_tv, global_step],
                     feed_dict={self.y_c: x_batch, self.y_s: self.y_s0})
-
-                print('epoch : %d, iter : %4d, ' % (epoch, step),
+                if iterations % 1000 == 0:
+                    print('epoch : %d, iter : %4d, ' % (epoch, step),
                       'L_total : %g, L_content : %g, L_style : %g, L_tv : %g' % (L_total, L_content, L_style, L_tv))
 
                 # write logs at every iteration
